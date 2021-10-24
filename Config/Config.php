@@ -1,6 +1,6 @@
 <?php
 
-const BASE_URL="http://localhost/hostal";
+const BASE_URL="heroku_4e8b11e241cef3a";
 
 const DB_HOST="localhost";
 const DB_NAME="hostal";
