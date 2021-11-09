@@ -24,7 +24,7 @@ headerAdmin($data);
     <div class="col-md-6">
         <div class="tile">
             <h3 class="tile-title">Lista Habitaciones</h3>
-            <table class="table table-bordered">
+            <table class="table table-bordered" id="tableHabita">
               <thead>
                 <tr>
                   <th>Nro Habitacion</th>
@@ -33,11 +33,7 @@ headerAdmin($data);
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>101</td>
-                  <td>1</td>
-                  <td>no</td>
-                </tr>
+               
               </tbody>
             </table>
           </div>

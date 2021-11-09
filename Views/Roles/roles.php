@@ -30,6 +30,7 @@
                       <th>idRol</th>
                       <th>Rol</th>
                       <th>Autorizacion</th>
+                      <th>Acciones</th>
                     </tr>
                   </thead>
                   <tbody>

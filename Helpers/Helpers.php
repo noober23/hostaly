@@ -17,6 +17,17 @@ function footerAdmin($data=""){
     require_once ($views_footer);
 }
 
+/*
+function headerHotel($data=""){
+    $views_header ="Views/Templates2/header_hotel.php";
+    require_once ($views_header);
+}
+function footerHotel($data=""){
+    $views_footer ="Views/Templates2/footer_hotel.php";
+    require_once ($views_footer);
+}
+*/
+
 //INfo formateada
 function dep($data){
     $format = print_r('<pre>');
