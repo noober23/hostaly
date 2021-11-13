@@ -9,7 +9,7 @@
 /*  
   CONFIGURACION HEROKU
 */
-const BASE_URL="hostaly.herokuapp.com";
+const BASE_URL="https://hostaly.herokuapp.com";
 
 const DB_HOST="us-cdbr-east-04.cleardb.com";
 const DB_NAME="heroku_4e8b11e241cef3a";
