@@ -1,7 +1,7 @@
-var tableServicios;
+var tableTipoHab;
 
 document.addEventListener('DOMContentLoaded', function() {
-    tableRoles = $('#tableRoles').dataTable( {
+    tableTipoHab = $('#tableTipoHab').dataTable( {
 
         "aProcessing":true,
         "aServerSide":true,
@@ -10,14 +10,15 @@ document.addEventListener('DOMContentLoaded', function() {
         },
 
         "ajax":{
-            "url": " "+base_url+"/Servicios/getServicios",
+            "url": " "+base_url+"/TipoHab/getTipoHab",
             "dataSrc":""
         },
 
         "columns":[
-            {"data":"idServicio"},
+            {"data":"idtipo_habitacion"},
             {"data":"nombre"},
-            {"data":"version"}
+            {"data":"precio"},
+            {"data":"descripcion"}
         ],
 
         "resonsieve":"true",

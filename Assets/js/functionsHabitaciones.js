@@ -1,6 +1,5 @@
 var tableHabitaciones;
 
-
 document.addEventListener('DOMContentLoaded', function() {
 
     tableHabitaciones = $('#tableHabitaciones').dataTable( {
@@ -19,8 +18,9 @@ document.addEventListener('DOMContentLoaded', function() {
         "columns":[
 
             {"data":"idHabitacion"},
-            {"data":"idtipoHab"},
-            {"data":"idHotel"}
+            {"data":"idHotel"},
+            {"data":"tipo_habitacion"},
+            {"data":"estado"}
 
         ],
 

@@ -8,6 +8,7 @@
         <script src="<?= media();?>/js/main.js"></script>
 
          <script src="<?= media();?>/js/plugins/pace.min.js"></script>
+         <script src="<?= media();?>/js/plugins/sweetalert.min.js"></script>
 
         <!-- Data table plugin-->
         <script type="text/javascript" src="<?= media();?>/js/plugins/jquery.dataTables.min.js"></script>
@@ -15,9 +16,8 @@
       
          <!-- Libreria funciones de paginas-->
          <script src="<?= media();?>/js/functions_admin.js"></script>
-         <script src="<?= media();?>/js/functionsRoles.js"></script>
-
-         <script src="<?= media();?>/js/<?= $data['page_function_js'];?>"></script>
+         <script src="<?= media(); ?>/js/<?= $data['page_functions_js']; ?>"></script>
+            
     </body>
 </html>
 

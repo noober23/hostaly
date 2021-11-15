@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		{"data":"idRol"},
 		{"data":"rol"},
 		{"data":"autorizacion"},
-		{"data":"options"}
+        {"data":"options"}
 	],
 
 	"resonsieve":"true",
@@ -79,7 +79,9 @@ $('#modalFormRol').modal('show');
 				 tableRoles.api().ajax.reload();
 			 }else{
 				 swal("Error", objData.msg , "error");
-			 }              
+			 }     
+             
+                  
 		 } 
 		 divLoading.style.display = "none";
 		 return false;
@@ -88,45 +90,53 @@ $('#modalFormRol').modal('show');
 	 
  }
 
-function fntEditRol(idrol){
-    document.querySelector('#titleModal').innerHTML ="Actualizar Rol";
-    document.querySelector('.modal-header').classList.replace("headerRegister", "headerUpdate");
-    document.querySelector('#btnActionForm').classList.replace("btn-primary", "btn-info");
-    document.querySelector('#btnText').innerHTML ="Actualizar";
+function fntEditRol(){
+    var btnEditRol = document.querySelectorAll(".btnEditRol");
+    btnEditRol.forEach(function(btnEditRol){
+        btnEditRol.addEventListener('click',function(){
+            document.querySelector('#titleModal').innerHTML ="Actualizar Rol";
+            document.querySelector('.modal-header').classList.replace("headerRegister", "headerUpdate");
+            document.querySelector('#btnActionForm').classList.replace("btn-primary", "btn-info");
+            document.querySelector('#btnText').innerHTML ="Actualizar";
 
-    var idrol = idrol;
-    var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-    var ajaxUrl  = base_url+'/Roles/getRol/'+idrol;
-    request.open("GET",ajaxUrl ,true);
-    request.send();
+            var idrol = this.getAttribute;
+            var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            var ajaxUrl  = base_url+'/Roles/getRol/'+idrol;
+            request.open("GET",ajaxUrl ,true);
+            request.send();
 
-    request.onreadystatechange = function(){
-        if(request.readyState == 4 && request.status == 200){
-            
-            var objData = JSON.parse(request.responseText);
-            if(objData.status)
-            {
-                document.querySelector("#idRol").value = objData.data.idrol;
-                document.querySelector("#txtRol").value = objData.data.rol;
-    
+            request.onreadystatechange = function(){
+                if(request.readyState == 4 && request.status == 200){
+                    var objData = JSON.parse(request.responseText);
+                    if(objData.status)
+                    {
+                        document.querySelector("#idRol").value = objData.data.idrol;
+                        document.querySelector("#txtRol").value = objData.data.nombrerol;
+                        
 
-                if(objData.data.status == 1)
-                {
-                    var optionSelect = '<option value="1" selected class="notBlock">si</option>';
-                }else{
-                    var optionSelect = '<option value="0" selected class="notBlock">no</option>';
+                        if(objData.autorizacion == 1)
+                        {
+                            var optionSelect = '<option value="1" selected class="notBlock">si</option>';
+                        }else{
+                            var optionSelect = '<option value="0" selected class="notBlock">no</option>';
+                        }
+                        var htmlSelect = `${optionSelect}
+                                        <option value="1">si</option>
+                                        <option value="0">no</option>
+                                        `;
+                        document.querySelector("#Auto").innerHTML = htmlSelect;
+                        $('#modalFormRol').modal('show');
+                    }
+                    else{
+                        swal("Error", objData.msg , "error");
+                    }
+                    
                 }
-                var htmlSelect = `${optionSelect}
-                                  <option value="1">si</option>
-                                  <option value="0">no</option>
-                                `;
-                document.querySelector("#listStatus").innerHTML = htmlSelect;
-                $('#modalFormRol').modal('show');
-            }else{
-                swal("Error", objData.msg , "error");
             }
-        }
-    }
+            
+        });
+    });
+    
 
 }
 

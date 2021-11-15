@@ -4,6 +4,7 @@ headerAdmin($data);
 
 
 <main class="app-content">
+
     <div class="app-title">
         <div>
             <h1><i class="fa fa-dashboard"></i><?= $data['page_title']?></h1>
@@ -23,19 +24,47 @@ headerAdmin($data);
     </div>
     <div class="row">
         <div class="col-md-12">
+        <button class="btn btn-primary mb-2" type="button" data-toggle="modal" data-target="#nuevaReserva"><i class="fas fa-plus-circle"></i></button>
           <div class="tile">
             <div class="tile-body">
               <div class="table-responsive">
                 <table class="table table-hover table-bordered" id="tableRoles">
                   <thead>
                     <tr>
-                      <th>idRol</th>
-                      <th>Rol</th>
-                      <th>Autorizacion</th>
-                      <th>Acciones</th>
+                      <th>idReserva</th>
+                      <th>Fecha Inicio</th>
+                      <th>Fecha Fin</th>
+                      <th>Fecha Reserva</th>
                     </tr>
                   </thead>
                   <tbody>
+                    <?php 
+                          foreach($data as $row){
+
+                          
+                    ?>
+                    <tr>
+                      
+                      <td><?php echo $row['idReserva'];?></td>
+                      <td><?php echo $row['fecha_ingreso'];?></td>
+                      <td><?php echo $row['fecha_fin'];?></td>
+                      <td><?php echo $row['fecha_reserva'];?></td>
+                      <td>
+                          <a class="btn btn-primary" href="<?php echo base_url() ?>materia/editar?id=<?php echo $materia['id'] ?>"><i class="fas fa-edit"></i></a>
+                          <?php if ($row['estado'] == 1) { ?>
+                          <form method="post" action="<?php echo base_url() ?>materia/eliminar" class="d-inline eliminar">
+                            <input type="hidden" name="id" value="<?php echo $materia['id']; ?>">
+                            <button class="btn btn-danger" type="submit"><i class="fas fa-trash-alt"></i></button>
+                          </form>
+                                <?php } else { ?>
+                          <form method="post" action="<?php echo base_url() ?>materia/reingresar" class="d-inline reingresar">
+                                <input type="hidden" name="id" value="<?php echo $materia['id']; ?>">
+                                <button class="btn btn-success" type="submit"><i class="fas fa-audio-description"></i></button>
+                          </form>
+                        <?php } ?>
+                        </td>
+                    </tr>
+                    <?php } ?>
                   </tbody>
                 </table>
               </div>
@@ -55,5 +84,41 @@ headerAdmin($data);
 
 </main>
 
-
+<div class="modal fade" id="nuevaReserva" tabindex="-1" role="dialog"  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="titleModal">Registro Reserva</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="tile">
+            <div class="tile-body">
+              <form action="<?php echo base_url(); ?>reserva/registrarReserva" method="post" enctype="multipart/form-data" autocomplete="off" id="formReserva" name="formReserva">
+              <input type="hidden" id="idReserva" name="idReserva" value="">
+                <div class="form-group">
+                  <label class="control-label">Reserva</label>a
+                  <input class="form-control" type="text"  id="idHabita" name="idHabita" readonly="">
+                </div>
+                <div class="form-group">
+                  <label class="control-label">Fecha Inicio</label>
+                  <input type="date" id="fechaIni" name="fechaIni">
+                </div>
+                <div class="form-group">
+                  <label class="control-label">Fecha Fin</label>
+                  <input type="date" id="fechaFin" name="fechaFin">
+                </div>
+    
+                <div class="tile-footer">
+                <button id="btnActionForm" class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i><span id="btnText">Guardar</span></button>&nbsp;&nbsp;&nbsp;
+                <button class="btn btn-danger" type="button" data-dismiss="modal">Atras</button>
+              </form>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
 <?php footerAdmin($data); ?>

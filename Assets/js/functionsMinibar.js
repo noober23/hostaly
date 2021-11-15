@@ -1,7 +1,7 @@
-var tableServicios;
+var tableMinibar;
 
 document.addEventListener('DOMContentLoaded', function() {
-    tableRoles = $('#tableRoles').dataTable( {
+    tableMinibar = $('#tableMinibar').dataTable( {
 
         "aProcessing":true,
         "aServerSide":true,
@@ -10,14 +10,15 @@ document.addEventListener('DOMContentLoaded', function() {
         },
 
         "ajax":{
-            "url": " "+base_url+"/Servicios/getServicios",
+            "url": " "+base_url+"/Minibar/getMinibar",
             "dataSrc":""
         },
 
         "columns":[
-            {"data":"idServicio"},
-            {"data":"nombre"},
-            {"data":"version"}
+            {"data":"idMinibar"},
+            {"data":"idBebida"},
+            {"data":"cantidadInicio"},
+            {"data":"cantidadConsumido"}
         ],
 
         "resonsieve":"true",

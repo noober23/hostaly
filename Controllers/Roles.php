@@ -9,10 +9,14 @@ class Roles extends Controllers{
         $data['page_tag']="Roles ";
         $data['page_title']="Roles Hostal";
         $data['page_name']="rol";
+        $data['page_functions_js'] = "functionsRoles.js";
         $this->views->getView($this,"roles",$data);
     }
     public function getRoles(){
+        $btnEdit ='';
+        $btnDelete='';
         $arrData = $this->model->selectRoles();
+
         for ($i=0; $i < count($arrData); $i++) {
 
             if($arrData[$i]['autorizacion'] == 1)
@@ -21,10 +25,10 @@ class Roles extends Controllers{
             }else{
                 $arrData[$i]['autorizacion'] = '<span class="badge badge-danger">no</span>';
             }
-            $arrData[$i]['options'] = '<div class="text-center">
-            <button class="btn btn-primary btn-sm btnEditRol" onClick="fntEditRol('.$arrData[$i]['idRol'].')" title="Editar"><i class="fas fa-pencil-alt"></i></button>
-            <button class="btn btn-danger btn-sm btnDelRol" onClick="fntDelRol('.$arrData[$i]['idRol'].')" title="Eliminar"><i class="far fa-trash-alt"></i></button>
-            </div>';
+            
+            $btnEdit ='<button class="btn btn-primary btn-sm btnEditRol" onClick="fntEditRol('.$arrData[$i]['idRol'].')" title="Editar"><i class="fas fa-pencil-alt"></i></button>';
+            $btnDelete='<button class="btn btn-danger btn-sm btnDelRol" onClick="fntDelRol('.$arrData[$i]['idRol'].')" title="Eliminar"><i class="far fa-trash-alt"></i></button>';
+            $arrData[$i]['options'] = '<div class="text-center">'.$btnEdit.''.$btnDelete.'</div>';
         }
         echo json_encode($arrData,JSON_UNESCAPED_UNICODE);
         die();
@@ -33,15 +37,18 @@ class Roles extends Controllers{
     public function setRol(){
         $intIdrol = intval($_POST['idRol']);
         $strRol =  strClean($_POST['txtRol']);
-
         $intAuto = intval($_POST['Auto']);
+
         $request_rol = "";
             if($intIdrol == 0)
             {
-                
-                    $request_rol = $this->model->insertRol($strRol,$intAuto);
+                //crear status autorizacion
+                    $request_rol = $this->model->insertRol($intIdrol,$strRol,$intAuto);
                     $option = 1;
-                
+            }
+            else{
+                $request_rol = $this->model->updateRol($intIdrol,$strRol,$intAuto);
+                    $option = 0;
             }
 
             if($request_rol > 0 )
@@ -61,7 +68,39 @@ class Roles extends Controllers{
         echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
         die();
     }
+    public function getRol(int $idrol){
+        $intIdrol = intval(strClean($idrol));
+            if($intIdrol > 0)
+            {
+                $arrData = $this->model->selectRol($intIdrol);
+                    if(empty($arrData))
+                    {
+                        $arrResponse = array('autorizacion' => true, 'msg' => 'Datos guardados correctamente.');
+                    }else{
+                        $arrResponse = array('autorizacion' => true, 'msg' => 'Datos Actualizados correctamente.');
+                    }
+            }
 
+        
+        echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+        die();
+    }
+    public function delRol(){
+        $intIdrol = intval($_POST['idrol']);
+		$requestDelete = $this->model->deleteRol($intIdrol);
+		if($requestDelete == 'ok')
+			{
+				$arrResponse = array('status' => true, 'msg' => 'Se ha eliminado el Rol');
+			}
+            else if($requestDelete == 'exist'){
+						$arrResponse = array('status' => false, 'msg' => 'No es posible eliminar un Rol asociado a usuarios.');
+					}
+            else{
+				$arrResponse = array('status' => false, 'msg' => 'Error al eliminar el Rol.');
+			}
+		echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+            die();
+    }
     
 }
 ?>

@@ -1,5 +1,5 @@
 <?php
-class UsuarioModel extends Mysql{
+class UsuariosModel extends Mysql{
     public function  __construct()
     {
         parent::__construct();

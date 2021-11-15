@@ -15,6 +15,7 @@ class LoginModel extends Mysql
         $data['page_tag']="Login ";
         $data['page_title']="Login hostal";
         $data['page_name']="Login";
+        $data['page_functions_js'] = "functions_login.js";
         $this->views->getView($this,"usuarios",$data);
     }
 

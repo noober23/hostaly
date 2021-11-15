@@ -36,8 +36,8 @@
         </li>
         <li class="treeview is-expanded"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Servicios</span><i class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
-                <li><a class="treeview-item active" href="<?=base_url(); ?>/servicios"><i class="icon fa fa-circle-o"></i>Minibar</a></li>
-                <li><a class="treeview-item" href="<?=base_url(); ?>/servicios"><i class="icon fa fa-circle-o"></i> Bebidas</a></li>
+                <li><a class="treeview-item active" href="<?=base_url(); ?>/minibar"><i class="icon fa fa-circle-o"></i>Minibar</a></li>
+                <li><a class="treeview-item" href="<?=base_url(); ?>/bebidas"><i class="icon fa fa-circle-o"></i> Bebidas</a></li>
                 <li><a class="treeview-item" href="<?=base_url(); ?>/servicios"><i class="icon fa fa-circle-o"></i>Servicios</a></li>
             </ul>
         </li>

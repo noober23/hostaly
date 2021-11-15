@@ -10,6 +10,7 @@ class Servicios extends Controllers{
         $data['page_tag']="Servicios ";
         $data['page_title']="Servicios hostal";
         $data['page_name']="servicios";
+        $data['page_functions_js'] = "functionsServicios.js";
         $this->views->getView($this,"servicios",$data);
     }    
 }

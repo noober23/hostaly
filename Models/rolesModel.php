@@ -1,5 +1,5 @@
 <?php
-class rolesModel extends Mysql{
+class RolesModel extends Mysql{
     public $intIdrol;
     public $txtRol;
     public $auto;
@@ -25,7 +25,7 @@ class rolesModel extends Mysql{
         $this->txtRol = $rol;
         $this->auto = $autorizacion;
 
-        $sql= "SELECT * FROM rol WHERE rol  ='$this->txtRol' AND idRol != $this->intIdrol";
+        $sql= "SELECT * FROM rol WHERE rol  = $this->txtRol AND idRol != $this->intIdrol";
         $request =$this->select_all($sql);
 
         if(empty($request)){
@@ -43,7 +43,7 @@ class rolesModel extends Mysql{
         $this->idRol = $idrol;
         $this->txtRol = $rol;
         $this->auto = $autorizacion;
-        $sql= "SELECT * FROM rol WHERE rol  ='$this->txtRol' AND idRol != $this->intIdrol";
+        $sql= "SELECT * FROM rol WHERE rol  =$this->txtRol AND idRol != $this->intIdrol";
         $request =$this->select_all($sql);
 
         if(empty($request)){
@@ -57,22 +57,15 @@ class rolesModel extends Mysql{
     }    
 
 
-    public function deleteRol()
+    public function deleteRol(int $idrol)
     {
-        $intIdrol = intval($_POST['idrol']);
-        $requestDelete = $this->model->deleteRol($intIdrol);
-        if($requestDelete == 'ok')
-        {
-            $arrResponse = array('autorizacion' => true, 'msg' => 'Se ha eliminado el Rol');
-         }else if($requestDelete == 'exist'){
-            $arrResponse = array('autorizacion' => false, 'msg' => 'No es posible eliminar un Rol asociado a usuarios.');
-            }else{
-                $arrResponse = array('autorizacion' => false, 'msg' => 'Error al eliminar el Rol.');
-            }
-        echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
-                
-            }
-        die();    
+        $this->intIdrol = $idrol;
+			$sql = "DELETE FROM rol WHERE idRol = $this->intIdrol";
+			$request = $this->delete($sql);
+			
+			return $request;
     }
+    
 
 }
+?>

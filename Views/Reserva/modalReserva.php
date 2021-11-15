@@ -14,16 +14,16 @@
               <form id="formReserva" name="formReserva">
               <input type="hidden" id="idReserva" name="idReserva" value="">
                 <div class="form-group">
-                  <label class="control-label">Reserva</label>a
-                  <input class="form-control" type="text"  id="idHabita" name="idHabita" readonly="">
+                  <label class="control-label">Reserva</label>
+                  <input class="form-control" type="text"  id="idReserva" name="idReserva" readonly="">
                 </div>
                 <div class="form-group">
                   <label class="control-label">Fecha Inicio</label>
-                  <input type="date" name="fechaIni">
+                  <input type="date" id="fechaIni" name="fechaIni">
                 </div>
                 <div class="form-group">
                   <label class="control-label">Fecha Fin</label>
-                  <input type="date" name="fechaFin">
+                  <input type="date" id="fechaFin" name="fechaFin">
                 </div>
     
                 <div class="tile-footer">
